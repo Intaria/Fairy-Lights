@@ -71,37 +71,13 @@ public final class FLCraftingRecipes {
 
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> FAIRY_LIGHT = REG.register("crafting_special_fairy_light", makeSerializer(FLCraftingRecipes::createFairyLight));
 
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> PAPER_LANTERN = REG.register("crafting_special_paper_lantern", makeSerializer(FLCraftingRecipes::createPaperLantern));
-
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> ORB_LANTERN = REG.register("crafting_special_orb_lantern", makeSerializer(FLCraftingRecipes::createOrbLantern));
-
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> FLOWER_LIGHT = REG.register("crafting_special_flower_light", makeSerializer(FLCraftingRecipes::createFlowerLight));
 
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> CANDLE_LANTERN_LIGHT = REG.register("crafting_special_candle_lantern_light", makeSerializer(FLCraftingRecipes::createCandleLanternLight));
 
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> OIL_LANTERN_LIGHT = REG.register("crafting_special_oil_lantern_light", makeSerializer(FLCraftingRecipes::createOilLanternLight));
-
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> JACK_O_LANTERN = REG.register("crafting_special_jack_o_lantern", makeSerializer(FLCraftingRecipes::createJackOLantern));
-
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> SKULL_LIGHT = REG.register("crafting_special_skull_light", makeSerializer(FLCraftingRecipes::createSkullLight));
-
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> GHOST_LIGHT = REG.register("crafting_special_ghost_light", makeSerializer(FLCraftingRecipes::createGhostLight));
-
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> SPIDER_LIGHT = REG.register("crafting_special_spider_light", makeSerializer(FLCraftingRecipes::createSpiderLight));
-
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> WITCH_LIGHT = REG.register("crafting_special_witch_light", makeSerializer(FLCraftingRecipes::createWitchLight));
-
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> SNOWFLAKE_LIGHT = REG.register("crafting_special_snowflake_light", makeSerializer(FLCraftingRecipes::createSnowflakeLight));
-
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> HEART_LIGHT = REG.register("crafting_special_heart_light", makeSerializer(FLCraftingRecipes::createHeartLight));
-
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> MOON_LIGHT = REG.register("crafting_special_moon_light", makeSerializer(FLCraftingRecipes::createMoonLight));
 
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> STAR_LIGHT = REG.register("crafting_special_star_light", makeSerializer(FLCraftingRecipes::createStarLight));
-
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> ICICLE_LIGHTS = REG.register("crafting_special_icicle_lights", makeSerializer(FLCraftingRecipes::createIcicleLights));
-
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> METEOR_LIGHT = REG.register("crafting_special_meteor_light", makeSerializer(FLCraftingRecipes::createMeteorLight));
 
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> LIGHT_TWINKLE = REG.register("crafting_special_light_twinkle", makeSerializer(FLCraftingRecipes::createLightTwinkle));
 
@@ -454,21 +430,6 @@ public final class FLCraftingRecipes {
         );
     }
 
-    private static GenericRecipe createPaperLantern(final ResourceLocation name) {
-        return createLight(name, PAPER_LANTERN, FLItems.PAPER_LANTERN, b -> b
-            .withShape(" I ", "PDP", "PPP")
-            .withIngredient('P', Items.PAPER)
-        );
-    }
-
-    private static GenericRecipe createOrbLantern(final ResourceLocation name) {
-        return createLight(name, ORB_LANTERN, FLItems.ORB_LANTERN, b -> b
-            .withShape(" I ", "SDS", " W ")
-            .withIngredient('S', Tags.Items.STRING)
-            .withIngredient('W', Items.WHITE_WOOL)
-        );
-    }
-
     private static GenericRecipe createFlowerLight(final ResourceLocation name) {
         return createLight(name, FLOWER_LIGHT, FLItems.FLOWER_LIGHT, b -> b
             .withShape(" I ", "RDB", " Y ")
@@ -485,71 +446,6 @@ public final class FLCraftingRecipes {
         );
     }
 
-    private static GenericRecipe createOilLanternLight(final ResourceLocation name) {
-        return createLight(name, OIL_LANTERN_LIGHT, FLItems.OIL_LANTERN_LIGHT, b -> b
-            .withShape(" I ", "SDS", "IGI")
-            .withIngredient('S', Items.STICK)
-            .withIngredient('G', Tags.Items.GLASS_PANES_COLORLESS)
-        );
-    }
-
-    private static GenericRecipe createJackOLantern(final ResourceLocation name) {
-        return createLight(name, JACK_O_LANTERN, FLItems.JACK_O_LANTERN, b -> b
-            .withShape(" I ", "SDS", "GPG")
-            .withIngredient('S', ItemTags.WOODEN_SLABS)
-            .withIngredient('G', Items.TORCH)
-            .withIngredient('P', Items.JACK_O_LANTERN)
-        );
-    }
-
-    private static GenericRecipe createSkullLight(final ResourceLocation name) {
-        return createLight(name, SKULL_LIGHT, FLItems.SKULL_LIGHT, b -> b
-            .withShape(" I ", "IDI", " B ")
-            .withIngredient('B', Tags.Items.BONES)
-        );
-    }
-
-    private static GenericRecipe createGhostLight(final ResourceLocation name) {
-        return createLight(name, GHOST_LIGHT, FLItems.GHOST_LIGHT, b -> b
-            .withShape(" I ", "PDP", "IGI")
-            .withIngredient('P', Items.PAPER)
-            .withIngredient('G', Tags.Items.GLASS_PANES_WHITE)
-        );
-    }
-
-    private static GenericRecipe createSpiderLight(final ResourceLocation name) {
-        return createLight(name, SPIDER_LIGHT, FLItems.SPIDER_LIGHT, b -> b
-            .withShape(" I ", "WDW", "SES")
-            .withIngredient('W', Items.COBWEB)
-            .withIngredient('S', Tags.Items.STRING)
-            .withIngredient('E', Items.SPIDER_EYE)
-        );
-    }
-
-    private static GenericRecipe createWitchLight(final ResourceLocation name) {
-        return createLight(name, WITCH_LIGHT, FLItems.WITCH_LIGHT, b -> b
-            .withShape(" I ", "BDW", " S ")
-            .withIngredient('B', Items.GLASS_BOTTLE)
-            .withIngredient('W', Items.WHEAT)
-            .withIngredient('S', Items.STICK)
-        );
-    }
-
-    private static GenericRecipe createSnowflakeLight(final ResourceLocation name) {
-        return createLight(name, SNOWFLAKE_LIGHT, FLItems.SNOWFLAKE_LIGHT, b -> b
-            .withShape(" I ", "SDS", " G ")
-            .withIngredient('S', Items.SNOWBALL)
-            .withIngredient('G', Tags.Items.GLASS_PANES_WHITE)
-        );
-    }
-
-    private static GenericRecipe createHeartLight(final ResourceLocation name) {
-        return createLight(name, HEART_LIGHT, FLItems.HEART_LIGHT, b -> b
-            .withShape(" I ", "IDI", " G ")
-            .withIngredient('G', Tags.Items.GLASS_PANES_RED)
-        );
-    }
-
     private static GenericRecipe createMoonLight(final ResourceLocation name) {
         return createLight(name, MOON_LIGHT, FLItems.MOON_LIGHT, b -> b
             .withShape(" I ", "GDG", " C ")
@@ -559,27 +455,11 @@ public final class FLCraftingRecipes {
     }
 
 
-    private static GenericRecipe createStarLight(final ResourceLocation name) {
-        return createLight(name, STAR_LIGHT, FLItems.STAR_LIGHT, b -> b
-            .withShape(" I ", "PDP", " G ")
-            .withIngredient('P', Tags.Items.GLASS_PANES_WHITE)
-            .withIngredient('G', Tags.Items.NUGGETS_GOLD)
-        );
-    }
-
     private static GenericRecipe createIcicleLights(final ResourceLocation name) {
         return createLight(name, ICICLE_LIGHTS, FLItems.ICICLE_LIGHTS, b -> b
             .withShape(" I ", "GDG", " B ")
             .withIngredient('G', Tags.Items.GLASS_PANES_COLORLESS)
             .withIngredient('B', Items.WATER_BUCKET)
-        );
-    }
-
-    private static GenericRecipe createMeteorLight(final ResourceLocation name) {
-        return createLight(name, METEOR_LIGHT, FLItems.METEOR_LIGHT, b -> b
-            .withShape(" I ", "GDG", "IPI")
-            .withIngredient('G', Tags.Items.DUSTS_GLOWSTONE)
-            .withIngredient('P', Items.PAPER)
         );
     }
 

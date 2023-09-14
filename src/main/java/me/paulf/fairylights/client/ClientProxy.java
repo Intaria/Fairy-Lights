@@ -12,21 +12,8 @@ import me.paulf.fairylights.client.model.light.ColorCandleLanternModel;
 import me.paulf.fairylights.client.model.light.ColorOilLanternModel;
 import me.paulf.fairylights.client.model.light.FairyLightModel;
 import me.paulf.fairylights.client.model.light.FlowerLightModel;
-import me.paulf.fairylights.client.model.light.GhostLightModel;
-import me.paulf.fairylights.client.model.light.HeartLightModel;
 import me.paulf.fairylights.client.model.light.IcicleLightsModel;
-import me.paulf.fairylights.client.model.light.IncandescentLightModel;
-import me.paulf.fairylights.client.model.light.JackOLanternLightModel;
-import me.paulf.fairylights.client.model.light.MeteorLightModel;
 import me.paulf.fairylights.client.model.light.MoonLightModel;
-import me.paulf.fairylights.client.model.light.OilLanternModel;
-import me.paulf.fairylights.client.model.light.OrbLanternModel;
-import me.paulf.fairylights.client.model.light.PaperLanternModel;
-import me.paulf.fairylights.client.model.light.SkullLightModel;
-import me.paulf.fairylights.client.model.light.SnowflakeLightModel;
-import me.paulf.fairylights.client.model.light.SpiderLightModel;
-import me.paulf.fairylights.client.model.light.StarLightModel;
-import me.paulf.fairylights.client.model.light.WitchLightModel;
 import me.paulf.fairylights.client.renderer.block.entity.FastenerBlockEntityRenderer;
 import me.paulf.fairylights.client.renderer.block.entity.GarlandTinselRenderer;
 import me.paulf.fairylights.client.renderer.block.entity.GarlandVineRenderer;
@@ -172,28 +159,14 @@ public final class ClientProxy extends ServerProxy {
         event.registerLayerDefinition(FLModelLayers.GARLAND_RINGS, GarlandVineRenderer.RingsModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.TINSEL_STRIP, GarlandTinselRenderer.StripModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.FAIRY_LIGHT, FairyLightModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.PAPER_LANTERN, PaperLanternModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.ORB_LANTERN, OrbLanternModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.FLOWER_LIGHT, FlowerLightModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.CANDLE_LANTERN_LIGHT, ColorCandleLanternModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.OIL_LANTERN_LIGHT, ColorOilLanternModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.JACK_O_LANTERN, JackOLanternLightModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.SKULL_LIGHT, SkullLightModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.GHOST_LIGHT, GhostLightModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.SPIDER_LIGHT, SpiderLightModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.WITCH_LIGHT, WitchLightModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.SNOWFLAKE_LIGHT, SnowflakeLightModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.HEART_LIGHT, HeartLightModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.MOON_LIGHT, MoonLightModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.STAR_LIGHT, StarLightModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.ICICLE_LIGHTS_1, () -> IcicleLightsModel.createLayer(1));
         event.registerLayerDefinition(FLModelLayers.ICICLE_LIGHTS_2, () -> IcicleLightsModel.createLayer(2));
         event.registerLayerDefinition(FLModelLayers.ICICLE_LIGHTS_3, () -> IcicleLightsModel.createLayer(3));
         event.registerLayerDefinition(FLModelLayers.ICICLE_LIGHTS_4, () -> IcicleLightsModel.createLayer(4));
-        event.registerLayerDefinition(FLModelLayers.METEOR_LIGHT, MeteorLightModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.OIL_LANTERN, OilLanternModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.CANDLE_LANTERN, CandleLanternModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.INCANDESCENT_LIGHT, IncandescentLightModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.LETTER_WIRE, LetterBuntingRenderer::wireLayer);
         event.registerLayerDefinition(FLModelLayers.PENNANT_WIRE, PennantBuntingRenderer::wireLayer);
         event.registerLayerDefinition(FLModelLayers.TINSEL_WIRE, GarlandTinselRenderer::wireLayer);
@@ -217,22 +190,10 @@ public final class ClientProxy extends ServerProxy {
             return 0xFFFFFF;
         },
             FLItems.FAIRY_LIGHT.get(),
-            FLItems.PAPER_LANTERN.get(),
-            FLItems.ORB_LANTERN.get(),
             FLItems.FLOWER_LIGHT.get(),
             FLItems.CANDLE_LANTERN_LIGHT.get(),
-            FLItems.OIL_LANTERN_LIGHT.get(),
-            FLItems.JACK_O_LANTERN.get(),
-            FLItems.SKULL_LIGHT.get(),
-            FLItems.GHOST_LIGHT.get(),
-            FLItems.SPIDER_LIGHT.get(),
-            FLItems.WITCH_LIGHT.get(),
-            FLItems.SNOWFLAKE_LIGHT.get(),
-            FLItems.HEART_LIGHT.get(),
             FLItems.MOON_LIGHT.get(),
-            FLItems.STAR_LIGHT.get(),
-            FLItems.ICICLE_LIGHTS.get(),
-            FLItems.METEOR_LIGHT.get()
+            FLItems.ICICLE_LIGHTS.get()
         );
         event.register((stack, index) -> {
             final CompoundTag tag = stack.getTag();

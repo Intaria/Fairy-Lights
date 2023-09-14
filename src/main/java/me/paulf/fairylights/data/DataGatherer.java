@@ -74,33 +74,12 @@ public final class DataGatherer {
                 .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
                 .unlockedBy("has_vine", has(Items.VINE))
                 .save(consumer);
-            ShapedRecipeBuilder.shaped(FLItems.OIL_LANTERN.get(), 4)
-                .pattern(" I ")
-                .pattern("STS")
-                .pattern("IGI")
-                .define('I', Tags.Items.INGOTS_IRON)
-                .define('S', Items.STICK)
-                .define('T', Items.TORCH)
-                .define('G', Tags.Items.GLASS_PANES_COLORLESS)
-                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
-                .unlockedBy("has_torch", has(Items.TORCH))
-                .save(consumer);
             ShapedRecipeBuilder.shaped(FLItems.CANDLE_LANTERN.get(), 4)
                 .pattern(" I ")
                 .pattern("GTG")
                 .pattern("IGI")
                 .define('I', Tags.Items.INGOTS_IRON)
                 .define('G', Tags.Items.NUGGETS_GOLD)
-                .define('T', Items.TORCH)
-                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
-                .unlockedBy("has_torch", has(Items.TORCH))
-                .save(consumer);
-            ShapedRecipeBuilder.shaped(FLItems.INCANDESCENT_LIGHT.get(), 4)
-                .pattern(" I ")
-                .pattern("ITI")
-                .pattern(" G ")
-                .define('I', Tags.Items.INGOTS_IRON)
-                .define('G', Tags.Items.GLASS_PANES_COLORLESS)
                 .define('T', Items.TORCH)
                 .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
                 .unlockedBy("has_torch", has(Items.TORCH))
@@ -133,38 +112,14 @@ public final class DataGatherer {
                 .build(consumer, new ResourceLocation(FairyLights.ID, "square_pennant"));
             this.lightRecipe(FLCraftingRecipes.FAIRY_LIGHT.get())
                 .build(consumer, new ResourceLocation(FairyLights.ID, "fairy_light"));
-            this.lightRecipe(FLCraftingRecipes.PAPER_LANTERN.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "paper_lantern"));
-            this.lightRecipe(FLCraftingRecipes.ORB_LANTERN.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "orb_lantern"));
             this.lightRecipe(FLCraftingRecipes.FLOWER_LIGHT.get())
                 .build(consumer, new ResourceLocation(FairyLights.ID, "flower_light"));
             this.lightRecipe(FLCraftingRecipes.CANDLE_LANTERN_LIGHT.get())
                 .build(consumer, new ResourceLocation(FairyLights.ID, "candle_lantern_light"));
-            this.lightRecipe(FLCraftingRecipes.OIL_LANTERN_LIGHT.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "oil_lantern_light"));
-            this.lightRecipe(FLCraftingRecipes.JACK_O_LANTERN.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "jack_o_lantern"));
-            this.lightRecipe(FLCraftingRecipes.SKULL_LIGHT.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "skull_light"));
-            this.lightRecipe(FLCraftingRecipes.GHOST_LIGHT.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "ghost_light"));
-            this.lightRecipe(FLCraftingRecipes.SPIDER_LIGHT.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "spider_light"));
-            this.lightRecipe(FLCraftingRecipes.WITCH_LIGHT.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "witch_light"));
-            this.lightRecipe(FLCraftingRecipes.SNOWFLAKE_LIGHT.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "snowflake_light"));
-            this.lightRecipe(FLCraftingRecipes.HEART_LIGHT.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "heart_light"));
             this.lightRecipe(FLCraftingRecipes.MOON_LIGHT.get())
                 .build(consumer, new ResourceLocation(FairyLights.ID, "moon_light"));
-            this.lightRecipe(FLCraftingRecipes.STAR_LIGHT.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "star_light"));
             this.lightRecipe(FLCraftingRecipes.ICICLE_LIGHTS.get())
                 .build(consumer, new ResourceLocation(FairyLights.ID, "icicle_lights"));
-            this.lightRecipe(FLCraftingRecipes.METEOR_LIGHT.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "meteor_light"));
             GenericRecipeBuilder.customRecipe(FLCraftingRecipes.LIGHT_TWINKLE.get())
                 .build(consumer, new ResourceLocation(FairyLights.ID, "light_twinkle"));
             GenericRecipeBuilder.customRecipe(FLCraftingRecipes.COLOR_CHANGING_LIGHT.get())
@@ -214,25 +169,11 @@ public final class DataGatherer {
         protected void addTables() {
             this.add(FLBlocks.FASTENER.get(), noDrop());
             this.add(FLBlocks.FAIRY_LIGHT.get(), noDrop());
-            this.add(FLBlocks.PAPER_LANTERN.get(), noDrop());
-            this.add(FLBlocks.ORB_LANTERN.get(), noDrop());
             this.add(FLBlocks.FLOWER_LIGHT.get(), noDrop());
             this.add(FLBlocks.CANDLE_LANTERN_LIGHT.get(), noDrop());
-            this.add(FLBlocks.OIL_LANTERN_LIGHT.get(), noDrop());
-            this.add(FLBlocks.JACK_O_LANTERN.get(), noDrop());
-            this.add(FLBlocks.SKULL_LIGHT.get(), noDrop());
-            this.add(FLBlocks.GHOST_LIGHT.get(), noDrop());
-            this.add(FLBlocks.SPIDER_LIGHT.get(), noDrop());
-            this.add(FLBlocks.WITCH_LIGHT.get(), noDrop());
-            this.add(FLBlocks.SNOWFLAKE_LIGHT.get(), noDrop());
-            this.add(FLBlocks.HEART_LIGHT.get(), noDrop());
             this.add(FLBlocks.MOON_LIGHT.get(), noDrop());
-            this.add(FLBlocks.STAR_LIGHT.get(), noDrop());
             this.add(FLBlocks.ICICLE_LIGHTS.get(), noDrop());
-            this.add(FLBlocks.METEOR_LIGHT.get(), noDrop());
-            this.add(FLBlocks.OIL_LANTERN.get(), noDrop());
             this.add(FLBlocks.CANDLE_LANTERN.get(), noDrop());
-            this.add(FLBlocks.INCANDESCENT_LIGHT.get(), noDrop());
         }
     }
 
