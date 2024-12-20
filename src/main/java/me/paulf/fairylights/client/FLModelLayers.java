@@ -8,7 +8,6 @@ public class FLModelLayers {
 
     public static final ModelLayerLocation BOW = main("bow");
     public static final ModelLayerLocation GARLAND_RINGS = main("garland_rings");
-    public static final ModelLayerLocation TINSEL_STRIP = main("tinsel_strip");
     public static final ModelLayerLocation FAIRY_LIGHT = main("fairy_light");
     public static final ModelLayerLocation FLOWER_LIGHT = main("flower_light");
     public static final ModelLayerLocation CANDLE_LANTERN_LIGHT = main("color_candle_lantern");
@@ -20,7 +19,6 @@ public class FLModelLayers {
     public static final ModelLayerLocation CANDLE_LANTERN = main("candle_lantern");
     public static final ModelLayerLocation LETTER_WIRE = main("letter_wire");
     public static final ModelLayerLocation PENNANT_WIRE = main("pennant_wire");
-    public static final ModelLayerLocation TINSEL_WIRE = main("tinsel_wire");
     public static final ModelLayerLocation VINE_WIRE = main("vine_wire");
     public static final ModelLayerLocation LIGHTS_WIRE = main("lights_wire");
 

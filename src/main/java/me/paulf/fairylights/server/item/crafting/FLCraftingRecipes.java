@@ -55,8 +55,6 @@ public final class FLCraftingRecipes {
 
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> HANGING_LIGHTS_AUGMENTATION = REG.register("crafting_special_hanging_lights_augmentation", makeSerializer(FLCraftingRecipes::createHangingLightsAugmentation));
 
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> TINSEL_GARLAND = REG.register("crafting_special_tinsel_garland", makeSerializer(FLCraftingRecipes::createTinselGarland));
-
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> PENNANT_BUNTING = REG.register("crafting_special_pennant_bunting", makeSerializer(FLCraftingRecipes::createPennantBunting));
 
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> PENNANT_BUNTING_AUGMENTATION = REG.register("crafting_special_pennant_bunting_augmentation", makeSerializer(FLCraftingRecipes::createPennantBuntingAugmentation));
@@ -315,16 +313,6 @@ public final class FLCraftingRecipes {
         compound.put("pattern", lights);
         HangingLightsConnectionItem.setString(compound, StringTypes.BLACK_STRING.get());
         return stack;
-    }
-
-    private static GenericRecipe createTinselGarland(final ResourceLocation name) {
-        return new GenericRecipeBuilder(name, TINSEL_GARLAND, FLItems.TINSEL.get())
-            .withShape(" P ", "I-I", " D ")
-            .withIngredient('P', Items.PAPER)
-            .withIngredient('I', Tags.Items.INGOTS_IRON)
-            .withIngredient('-', Tags.Items.STRING)
-            .withIngredient('D', DYE_SUBTYPE_INGREDIENT)
-            .build();
     }
 
     private static GenericRecipe createPennantBunting(final ResourceLocation name) {

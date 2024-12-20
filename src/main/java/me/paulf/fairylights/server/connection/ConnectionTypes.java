@@ -18,10 +18,6 @@ public final class ConnectionTypes {
         () -> ConnectionType.Builder.create(GarlandVineConnection::new).item(FLItems.GARLAND).build()
     );
 
-    public static final RegistryObject<ConnectionType<GarlandTinselConnection>> TINSEL_GARLAND = REG.register("tinsel_garland",
-        () -> ConnectionType.Builder.create(GarlandTinselConnection::new).item(FLItems.TINSEL).build()
-    );
-
     public static final RegistryObject<ConnectionType<PennantBuntingConnection>> PENNANT_BUNTING = REG.register("pennant_bunting",
         () -> ConnectionType.Builder.create(PennantBuntingConnection::new).item(FLItems.PENNANT_BUNTING).build()
     );

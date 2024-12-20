@@ -15,7 +15,6 @@ import me.paulf.fairylights.client.model.light.FlowerLightModel;
 import me.paulf.fairylights.client.model.light.IcicleLightsModel;
 import me.paulf.fairylights.client.model.light.MoonLightModel;
 import me.paulf.fairylights.client.renderer.block.entity.FastenerBlockEntityRenderer;
-import me.paulf.fairylights.client.renderer.block.entity.GarlandTinselRenderer;
 import me.paulf.fairylights.client.renderer.block.entity.GarlandVineRenderer;
 import me.paulf.fairylights.client.renderer.block.entity.HangingLightsRenderer;
 import me.paulf.fairylights.client.renderer.block.entity.LetterBuntingRenderer;
@@ -157,7 +156,6 @@ public final class ClientProxy extends ServerProxy {
     private void setupLayerDefinitions(final EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(FLModelLayers.BOW, BowModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.GARLAND_RINGS, GarlandVineRenderer.RingsModel::createLayer);
-        event.registerLayerDefinition(FLModelLayers.TINSEL_STRIP, GarlandTinselRenderer.StripModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.FAIRY_LIGHT, FairyLightModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.FLOWER_LIGHT, FlowerLightModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.CANDLE_LANTERN_LIGHT, ColorCandleLanternModel::createLayer);
@@ -169,7 +167,6 @@ public final class ClientProxy extends ServerProxy {
         event.registerLayerDefinition(FLModelLayers.CANDLE_LANTERN, CandleLanternModel::createLayer);
         event.registerLayerDefinition(FLModelLayers.LETTER_WIRE, LetterBuntingRenderer::wireLayer);
         event.registerLayerDefinition(FLModelLayers.PENNANT_WIRE, PennantBuntingRenderer::wireLayer);
-        event.registerLayerDefinition(FLModelLayers.TINSEL_WIRE, GarlandTinselRenderer::wireLayer);
         event.registerLayerDefinition(FLModelLayers.VINE_WIRE, GarlandVineRenderer::wireLayer);
         event.registerLayerDefinition(FLModelLayers.LIGHTS_WIRE, HangingLightsRenderer::wireLayer);
     }
@@ -221,7 +218,6 @@ public final class ClientProxy extends ServerProxy {
             }
             return 0xFFD584;
         }, FLItems.HANGING_LIGHTS.get());
-        event.register((stack, index) -> index == 0 ? DyeableItem.getColor(stack) : 0xFFFFFFFF, FLItems.TINSEL.get());
         event.register((stack, index) -> {
             if (index == 0) {
                 return 0xFFFFFFFF;

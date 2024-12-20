@@ -89,10 +89,6 @@ public final class DataGatherer {
                 .build(consumer, new ResourceLocation(FairyLights.ID, "hanging_lights"));
             GenericRecipeBuilder.customRecipe(FLCraftingRecipes.HANGING_LIGHTS_AUGMENTATION.get())
                 .build(consumer, new ResourceLocation(FairyLights.ID, "hanging_lights_augmentation"));
-            GenericRecipeBuilder.customRecipe(FLCraftingRecipes.TINSEL_GARLAND.get())
-                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
-                .unlockedBy("has_string", has(Tags.Items.STRING))
-                .build(consumer, new ResourceLocation(FairyLights.ID, "tinsel_garland"));
             GenericRecipeBuilder.customRecipe(FLCraftingRecipes.PENNANT_BUNTING.get())
                 .unlockedBy("has_pennants", has(FLCraftingRecipes.PENNANTS))
                 .build(consumer, new ResourceLocation(FairyLights.ID, "pennant_bunting"));

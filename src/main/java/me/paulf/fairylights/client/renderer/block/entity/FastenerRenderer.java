@@ -7,7 +7,6 @@ import me.paulf.fairylights.client.ClientProxy;
 import me.paulf.fairylights.client.FLModelLayers;
 import me.paulf.fairylights.client.model.light.BowModel;
 import me.paulf.fairylights.server.connection.Connection;
-import me.paulf.fairylights.server.connection.GarlandTinselConnection;
 import me.paulf.fairylights.server.connection.GarlandVineConnection;
 import me.paulf.fairylights.server.connection.HangingLightsConnection;
 import me.paulf.fairylights.server.connection.LetterBuntingConnection;
@@ -37,7 +36,6 @@ import java.util.function.Function;
 public class FastenerRenderer {
     private final HangingLightsRenderer hangingLights;
     private final GarlandVineRenderer garland;
-    private final GarlandTinselRenderer tinsel;
     private final PennantBuntingRenderer pennants;
     private final LetterBuntingRenderer letters;
     private final BowModel bow;
@@ -45,7 +43,6 @@ public class FastenerRenderer {
     public FastenerRenderer(final Function<ModelLayerLocation, ModelPart> baker) {
         this.hangingLights = new HangingLightsRenderer(baker);
         this.garland = new GarlandVineRenderer(baker);
-        this.tinsel = new GarlandTinselRenderer(baker);
         this.pennants = new PennantBuntingRenderer(baker);
         this.letters = new LetterBuntingRenderer(baker);
         this.bow = new BowModel(baker.apply(FLModelLayers.BOW));
@@ -126,8 +123,6 @@ public class FastenerRenderer {
             this.hangingLights.render((HangingLightsConnection) conn, delta, matrix, source, packedLight, packedOverlay);
         } else if (conn instanceof GarlandVineConnection) {
             this.garland.render((GarlandVineConnection) conn, delta, matrix, source, packedLight, packedOverlay);
-        } else if (conn instanceof GarlandTinselConnection) {
-            this.tinsel.render((GarlandTinselConnection) conn, delta, matrix, source, packedLight, packedOverlay);
         } else if (conn instanceof PennantBuntingConnection) {
             this.pennants.render((PennantBuntingConnection) conn, delta, matrix, source, packedLight, packedOverlay);
         } else if (conn instanceof LetterBuntingConnection) {
