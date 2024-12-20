@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import me.paulf.fairylights.FairyLights;
 import me.paulf.fairylights.server.item.DyeableItem;
 import me.paulf.fairylights.server.item.FLItems;
-import me.paulf.fairylights.server.item.HangingLightsConnectionItem;
 import me.paulf.fairylights.server.string.StringTypes;
 import me.paulf.fairylights.util.Blender;
 import me.paulf.fairylights.util.OreDictUtils;
@@ -51,10 +50,6 @@ public final class FLCraftingRecipes {
 
     public static final DeferredRegister<RecipeSerializer<?>> REG = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, FairyLights.ID);
 
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> HANGING_LIGHTS = REG.register("crafting_special_hanging_lights", makeSerializer(FLCraftingRecipes::createHangingLights));
-
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> HANGING_LIGHTS_AUGMENTATION = REG.register("crafting_special_hanging_lights_augmentation", makeSerializer(FLCraftingRecipes::createHangingLightsAugmentation));
-
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> PENNANT_BUNTING = REG.register("crafting_special_pennant_bunting", makeSerializer(FLCraftingRecipes::createPennantBunting));
 
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> PENNANT_BUNTING_AUGMENTATION = REG.register("crafting_special_pennant_bunting_augmentation", makeSerializer(FLCraftingRecipes::createPennantBuntingAugmentation));
@@ -66,8 +61,6 @@ public final class FLCraftingRecipes {
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> SWALLOWTAIL_PENNANT = REG.register("crafting_special_swallowtail_pennant", makeSerializer(FLCraftingRecipes::createSwallowtailPennant));
 
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> SQUARE_PENNANT = REG.register("crafting_special_square_pennant", makeSerializer(FLCraftingRecipes::createSquarePennant));
-
-    public static final RegistryObject<RecipeSerializer<GenericRecipe>> FAIRY_LIGHT = REG.register("crafting_special_fairy_light", makeSerializer(FLCraftingRecipes::createFairyLight));
 
     public static final RegistryObject<RecipeSerializer<GenericRecipe>> FLOWER_LIGHT = REG.register("crafting_special_flower_light", makeSerializer(FLCraftingRecipes::createFlowerLight));
 
@@ -200,119 +193,9 @@ public final class FLCraftingRecipes {
             .build();
     }
 
-    private static GenericRecipe createHangingLights(final ResourceLocation name) {
-        return new GenericRecipeBuilder(name, HANGING_LIGHTS, FLItems.HANGING_LIGHTS.get())
-            .withShape("I-I")
-            .withIngredient('I', Tags.Items.INGOTS_IRON)
-            .withIngredient('-', Tags.Items.STRING)
-            .withAuxiliaryIngredient(new LightIngredient(true))
-            .withAuxiliaryIngredient(new InertBasicAuxiliaryIngredient(LazyTagIngredient.of(Tags.Items.DYES_WHITE), false, 1) {
-                @Override
-                public ImmutableList<ImmutableList<ItemStack>> getInput(final ItemStack output) {
-                    final CompoundTag tag = output.getTag();
-                    return tag != null && HangingLightsConnectionItem.getString(tag) == StringTypes.WHITE_STRING.get() ? super.getInput(output) : ImmutableList.of();
-                }
-
-                @Override
-                public void present(final CompoundTag nbt) {
-                    HangingLightsConnectionItem.setString(nbt, StringTypes.WHITE_STRING.get());
-                }
-
-                @Override
-                public void absent(final CompoundTag nbt) {
-                    HangingLightsConnectionItem.setString(nbt, StringTypes.BLACK_STRING.get());
-                }
-
-                @Override
-                public void addTooltip(final List<Component> tooltip) {
-                    super.addTooltip(tooltip);
-                    tooltip.add(Utils.formatRecipeTooltip("recipe.fairylights.hangingLights.string"));
-                }
-            })
-            .build();
-    }
-
     private static boolean useInputsForTagBool(final ItemStack output, final String key, final boolean value) {
         final CompoundTag compound = output.getTag();
         return compound != null && compound.getBoolean(key) == value;
-    }
-
-    /*
-     *  The JEI shown recipe is adding glowstone, eventually I should allow a recipe to provide a number of
-     *  different recipe layouts the the input ingredients can be generated for so I could show applying a
-     *  new light pattern as well.
-     */
-    private static GenericRecipe createHangingLightsAugmentation(final ResourceLocation name) {
-        return new GenericRecipeBuilder(name, HANGING_LIGHTS_AUGMENTATION, FLItems.HANGING_LIGHTS.get())
-            .withShape("F")
-            .withIngredient('F', new BasicRegularIngredient(Ingredient.of(FLItems.HANGING_LIGHTS.get())) {
-                @Override
-                public ImmutableList<ItemStack> getInputs() {
-                    return Arrays.stream(this.ingredient.getItems())
-                        .map(ItemStack::copy)
-                        .flatMap(stack -> {
-                            stack.setTag(new CompoundTag());
-                            return makeHangingLightsExamples(stack).stream();
-                        }).collect(ImmutableList.toImmutableList());
-                }
-
-                @Override
-                public ImmutableList<ImmutableList<ItemStack>> getInput(final ItemStack output) {
-                    final ItemStack stack = output.copy();
-                    final CompoundTag compound = stack.getTag();
-                    if (compound == null) {
-                        return ImmutableList.of();
-                    }
-                    stack.setCount(1);
-                    return ImmutableList.of(ImmutableList.of(stack));
-                }
-
-                @Override
-                public void matched(final ItemStack ingredient, final CompoundTag nbt) {
-                    final CompoundTag compound = ingredient.getTag();
-                    if (compound != null) {
-                        nbt.merge(compound);
-                    }
-                }
-            })
-            .withAuxiliaryIngredient(new LightIngredient(true) {
-                @Override
-                public ImmutableList<ItemStack> getInputs() {
-                    return ImmutableList.of();
-                }
-
-                @Override
-                public ImmutableList<ImmutableList<ItemStack>> getInput(final ItemStack output) {
-                    return ImmutableList.of();
-                }
-            })
-            .build();
-    }
-
-    private static ImmutableList<ItemStack> makeHangingLightsExamples(final ItemStack stack) {
-        return ImmutableList.of(
-            makeHangingLights(stack, DyeColor.CYAN, DyeColor.MAGENTA, DyeColor.CYAN, DyeColor.WHITE),
-            makeHangingLights(stack, DyeColor.CYAN, DyeColor.LIGHT_BLUE, DyeColor.CYAN, DyeColor.LIGHT_BLUE),
-            makeHangingLights(stack, DyeColor.LIGHT_GRAY, DyeColor.PINK, DyeColor.CYAN, DyeColor.GREEN),
-            makeHangingLights(stack, DyeColor.LIGHT_GRAY, DyeColor.PURPLE, DyeColor.LIGHT_GRAY, DyeColor.GREEN),
-            makeHangingLights(stack, DyeColor.CYAN, DyeColor.YELLOW, DyeColor.CYAN, DyeColor.PURPLE)
-        );
-    }
-
-    public static ItemStack makeHangingLights(final ItemStack base, final DyeColor... colors) {
-        final ItemStack stack = base.copy();
-        CompoundTag compound = stack.getTag();
-        final ListTag lights = new ListTag();
-        for (final DyeColor color : colors) {
-            lights.add(DyeableItem.setColor(new ItemStack(FLItems.FAIRY_LIGHT.get()), color).save(new CompoundTag()));
-        }
-        if (compound == null) {
-            compound = new CompoundTag();
-            stack.setTag(compound);
-        }
-        compound.put("pattern", lights);
-        HangingLightsConnectionItem.setString(compound, StringTypes.BLACK_STRING.get());
-        return stack;
     }
 
     private static GenericRecipe createPennantBunting(final ResourceLocation name) {
@@ -409,13 +292,6 @@ public final class FLCraftingRecipes {
 
     private static GenericRecipe createSquarePennant(final ResourceLocation name) {
         return createPennant(name, SQUARE_PENNANT, FLItems.SQUARE_PENNANT.get(), "PPP");
-    }
-
-    private static GenericRecipe createFairyLight(final ResourceLocation name) {
-        return createLight(name, FAIRY_LIGHT, FLItems.FAIRY_LIGHT, b -> b
-            .withShape(" I ", "IDI", " G ")
-            .withIngredient('G', Tags.Items.GLASS_PANES_COLORLESS)
-        );
     }
 
     private static GenericRecipe createFlowerLight(final ResourceLocation name) {

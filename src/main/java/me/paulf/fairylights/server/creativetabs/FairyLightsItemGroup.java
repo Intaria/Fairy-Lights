@@ -12,6 +12,6 @@ public final class FairyLightsItemGroup extends CreativeModeTab {
 
     @Override
     public ItemStack makeIcon() {
-        return new ItemStack(FLItems.HANGING_LIGHTS.get());
+        return new ItemStack(FLItems.FLOWER_LIGHT.get());
     }
 }

@@ -32,8 +32,6 @@ public final class JinglerCommand {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private static final SimpleCommandExceptionType NO_HANGING_LIGHTS = new SimpleCommandExceptionType(Component.translatable("commands.jingler.open.failure.no_hanging_lights"));
-
     private static final DynamicCommandExceptionType DEVICE_UNAVAILABLE = new DynamicCommandExceptionType(name -> Component.translatable("commands.jingler.open.failure.device_unavailable", name));
 
     private static final DynamicCommandExceptionType DEVICE_NOT_FOUND = new DynamicCommandExceptionType(name -> Component.translatable("commands.jingler.open.failure.not_found", name));
@@ -48,9 +46,7 @@ public final class JinglerCommand {
                     .buildFuture()
                 ).executes(ctx -> {
                     final Connection conn = ClientEventHandler.getHitConnection();
-                    if (!(conn instanceof HangingLightsConnection)) {
-                        throw NO_HANGING_LIGHTS.create();
-                    }
+
                     final String name = StringArgumentType.getString(ctx, "device");
                     final MidiDevice device = getMidiDevice(name);
                     final Transmitter transmitter;

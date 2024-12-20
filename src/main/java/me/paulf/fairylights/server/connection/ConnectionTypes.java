@@ -10,10 +10,6 @@ public final class ConnectionTypes {
 
     public static final DeferredRegister<ConnectionType<?>> REG = DeferredRegister.create(FairyLights.CONNECTION_TYPE, FairyLights.ID);
 
-    public static final RegistryObject<ConnectionType<HangingLightsConnection>> HANGING_LIGHTS = REG.register("hanging_lights",
-        () -> ConnectionType.Builder.create(HangingLightsConnection::new).item(FLItems.HANGING_LIGHTS).build()
-    );
-
     public static final RegistryObject<ConnectionType<GarlandVineConnection>> VINE_GARLAND = REG.register("vine_garland",
         () -> ConnectionType.Builder.create(GarlandVineConnection::new).item(FLItems.GARLAND).build()
     );

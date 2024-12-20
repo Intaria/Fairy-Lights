@@ -84,11 +84,6 @@ public final class DataGatherer {
                 .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
                 .unlockedBy("has_torch", has(Items.TORCH))
                 .save(consumer);
-            GenericRecipeBuilder.customRecipe(FLCraftingRecipes.HANGING_LIGHTS.get())
-                .unlockedBy("has_lights", has(FLCraftingRecipes.LIGHTS))
-                .build(consumer, new ResourceLocation(FairyLights.ID, "hanging_lights"));
-            GenericRecipeBuilder.customRecipe(FLCraftingRecipes.HANGING_LIGHTS_AUGMENTATION.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "hanging_lights_augmentation"));
             GenericRecipeBuilder.customRecipe(FLCraftingRecipes.PENNANT_BUNTING.get())
                 .unlockedBy("has_pennants", has(FLCraftingRecipes.PENNANTS))
                 .build(consumer, new ResourceLocation(FairyLights.ID, "pennant_bunting"));
@@ -106,8 +101,6 @@ public final class DataGatherer {
                 .build(consumer, new ResourceLocation(FairyLights.ID, "swallowtail_pennant"));
             this.pennantRecipe(FLCraftingRecipes.SQUARE_PENNANT.get())
                 .build(consumer, new ResourceLocation(FairyLights.ID, "square_pennant"));
-            this.lightRecipe(FLCraftingRecipes.FAIRY_LIGHT.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "fairy_light"));
             this.lightRecipe(FLCraftingRecipes.FLOWER_LIGHT.get())
                 .build(consumer, new ResourceLocation(FairyLights.ID, "flower_light"));
             this.lightRecipe(FLCraftingRecipes.CANDLE_LANTERN_LIGHT.get())
@@ -118,8 +111,6 @@ public final class DataGatherer {
                 .build(consumer, new ResourceLocation(FairyLights.ID, "icicle_lights"));
             GenericRecipeBuilder.customRecipe(FLCraftingRecipes.LIGHT_TWINKLE.get())
                 .build(consumer, new ResourceLocation(FairyLights.ID, "light_twinkle"));
-            GenericRecipeBuilder.customRecipe(FLCraftingRecipes.COLOR_CHANGING_LIGHT.get())
-                .build(consumer, new ResourceLocation(FairyLights.ID, "color_changing_light"));
         }
 
         GenericRecipeBuilder lightRecipe(final RecipeSerializer<?> serializer) {

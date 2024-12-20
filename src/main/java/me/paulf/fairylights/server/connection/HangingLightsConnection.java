@@ -5,7 +5,6 @@ import me.paulf.fairylights.server.fastener.Fastener;
 import me.paulf.fairylights.server.feature.FeatureType;
 import me.paulf.fairylights.server.feature.light.Light;
 import me.paulf.fairylights.server.feature.light.LightBehavior;
-import me.paulf.fairylights.server.item.HangingLightsConnectionItem;
 import me.paulf.fairylights.server.item.LightVariant;
 import me.paulf.fairylights.server.item.SimpleLightVariant;
 import me.paulf.fairylights.server.item.crafting.FLCraftingRecipes;
@@ -275,7 +274,7 @@ public final class HangingLightsConnection extends HangingFeatureConnection<Ligh
     @Override
     public CompoundTag serializeLogic() {
         final CompoundTag compound = super.serializeLogic();
-        HangingLightsConnectionItem.setString(compound, this.string);
+        //HangingLightsConnectionItem.setString(compound, this.string);
         final ListTag tagList = new ListTag();
         for (final ItemStack light : this.pattern) {
             tagList.add(light.save(new CompoundTag()));
@@ -287,7 +286,7 @@ public final class HangingLightsConnection extends HangingFeatureConnection<Ligh
     @Override
     public void deserializeLogic(final CompoundTag compound) {
         super.deserializeLogic(compound);
-        this.string = HangingLightsConnectionItem.getString(compound);
+        //this.string = HangingLightsConnectionItem.getString(compound);
         final ListTag patternList = compound.getList("pattern", Tag.TAG_COMPOUND);
         this.pattern = new ArrayList<>();
         for (int i = 0; i < patternList.size(); i++) {

@@ -21,14 +21,12 @@ import me.paulf.fairylights.client.renderer.block.entity.LetterBuntingRenderer;
 import me.paulf.fairylights.client.renderer.block.entity.LightBlockEntityRenderer;
 import me.paulf.fairylights.client.renderer.block.entity.PennantBuntingRenderer;
 import me.paulf.fairylights.client.renderer.entity.FenceFastenerRenderer;
-import me.paulf.fairylights.client.tutorial.ClippyController;
 import me.paulf.fairylights.server.ServerProxy;
 import me.paulf.fairylights.server.block.entity.FLBlockEntities;
 import me.paulf.fairylights.server.entity.FLEntities;
 import me.paulf.fairylights.server.feature.light.ColorChangingBehavior;
 import me.paulf.fairylights.server.item.DyeableItem;
 import me.paulf.fairylights.server.item.FLItems;
-import me.paulf.fairylights.server.item.HangingLightsConnectionItem;
 import me.paulf.fairylights.server.string.StringTypes;
 import me.paulf.fairylights.util.styledstring.StyledString;
 import net.minecraft.ChatFormatting;
@@ -76,7 +74,6 @@ public final class ClientProxy extends ServerProxy {
     @Override
     public void init(final IEventBus modBus) {
         super.init(modBus);
-        new ClippyController().init(modBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, FLClientConfig.SPEC);
         ClientEventHandler clientEventHandler = new ClientEventHandler();
         MinecraftForge.EVENT_BUS.register(clientEventHandler);
@@ -186,38 +183,12 @@ public final class ClientProxy extends ServerProxy {
             }
             return 0xFFFFFF;
         },
-            FLItems.FAIRY_LIGHT.get(),
             FLItems.FLOWER_LIGHT.get(),
             FLItems.CANDLE_LANTERN_LIGHT.get(),
             FLItems.MOON_LIGHT.get(),
             FLItems.ICICLE_LIGHTS.get()
         );
-        event.register((stack, index) -> {
-            final CompoundTag tag = stack.getTag();
-            if (index == 0) {
-                if (tag != null) {
-                    return HangingLightsConnectionItem.getString(tag).getColor();
-                }
-                return StringTypes.BLACK_STRING.get().getColor();
-            }
-            if (tag != null) {
-                final ListTag tagList = tag.getList("pattern", Tag.TAG_COMPOUND);
-                if (tagList.size() > 0) {
-                    final ItemStack item = ItemStack.of(tagList.getCompound((index - 1) % tagList.size()));
-                    if (ColorChangingBehavior.exists(item)) {
-                        return ColorChangingBehavior.animate(item);
-                    }
-                    return DyeableItem.getColor(item);
-                }
-            }
-            if (FairyLights.CHRISTMAS.isOccurringNow()) {
-                return (index + Util.getMillis() / 2000) % 2 == 0 ? 0x993333 : 0x7FCC19;
-            }
-            if (FairyLights.HALLOWEEN.isOccurringNow()) {
-                return index % 2 == 0 ? 0xf9801d : 0x8932b8;
-            }
-            return 0xFFD584;
-        }, FLItems.HANGING_LIGHTS.get());
+
         event.register((stack, index) -> {
             if (index == 0) {
                 return 0xFFFFFFFF;
